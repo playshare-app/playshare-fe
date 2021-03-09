@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { getPlaylists } from './api-utils';
 import './App.css';
 import SpotifyPlayer from 'react-spotify-player';
+import {  addPublicPlaylist, getPublicPlaylists } from './api-utils.js';
+import {  getUserFromLocalStorage} from './local-storage-utils.js';
 
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
@@ -28,16 +30,21 @@ window.location.hash = '';
 class home extends Component {
   state = {
     token: '',
+    user: getUserFromLocalStorage(),
+    name: ' ',
+    uri: ' ',
+    playlist_id: ' ',
+    owner_name: ' ',
     playlist:[]
   };
 
   fetchPlaylist = async () => {
     const playlist = await getPlaylists(hash.access_token);
-    console.log(playlist);
+    // console.log(playlist);
     // console.log(playlist.items, 'PLAYLIST')
     const playListItems = playlist.items;
     this.setState({ playlist: playListItems });
-    console.log(playlist.items);
+    console.log(playlist);
 }
 
   componentDidMount() {
@@ -56,10 +63,42 @@ class home extends Component {
     }
   }
 
-  handleSubmit = (e) => {
-      e.preventDefault();
-      console.log('hello');
-  }
+//   handleSubmit = async (e) => {
+//     e.preventDefault()
+
+//     try {
+//       await addPublicPlaylist(  
+//       {
+//         name: this.state.playlist.name,
+//         uri: this.state.playlist.uri,
+//         playlist_id: this.state.playlist.id,
+//         owner_name: this.state.playlist.owner.display_name,
+//       }, this.user.token)
+//     } catch(e) { 
+//         this.setState({ error: 'Uh oh, please login to add this to your favorites.' })
+//     }
+
+// }
+
+publicPlaylistFetch = async () => {
+  const publicPlaylist = await getPublicPlaylists(this.user.token);
+
+  this.setState({ publicPlaylist })
+}
+
+handleSubmit = async (e) => {
+  e.preventDefault()
+  await addPublicPlaylist(  
+          {
+            name: this.state.songList.name,
+            uri: this.state.songList.uri,
+            playlist_id: this.state.songList.id,
+            owner_name: this.state.songList.display_name,
+          }, this.state.user.token)
+          console.log(this.state.songList.name);
+  await this.publicPlaylistFetch();
+
+}
 
 
 
@@ -100,7 +139,6 @@ class home extends Component {
                     theme={theme}
                   />
                   <button onClick={ this.handleSubmit }>Share!</button>
-            {/* <iframe src={`https://open.spotify.com/embed/playlist/${songList.id}`} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="hello"></iframe> */}
           </div>) 
       )}
         </header>

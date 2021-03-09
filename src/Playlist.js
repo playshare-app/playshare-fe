@@ -24,57 +24,32 @@ export default class Playlist extends Component {
     //       }
     // }
 
-    // fetchVideos = async () => {
+    // fetchPlaylists = async () => {
     //     const playlist = await getPlaylists(hash.access_token);
     //     console.log(playlist, 'PLAYLIST')
     //     this.setState({ playlist });
     // }
 
-    // componentDidMount = async() => {
-    //     if (this.props.token) await this.doFavoritesFetch();
-    // }
+    componentDidMount = async() => {
+        if (this.props.token) await this.doPublicPlaylistFetch();
+    }
 
-    // doFavoritesFetch = async () => {
-    //     const favorites = await getFavorites(this.props.user.token);
+    doPublicPlaylistFetch = async () => {
+        const publicPlaylist = await getPublicPlaylists(this.props.user.token);
 
-    //     this.setState({ favorites })
+        this.setState({ publicPlaylist })
 
-    // }
-    // doSearch = async () => {
-    //     const movies = await searchMovies(this.state.search);
+    }
 
-    //     this.setState({ movies });
-    // }
 
-    // handleSubmit = async e => {
-    //     e.preventDefault();
 
-    //     await this.doSearch();
-    // }
+    isAPublicPlaylist = (playlist) => {
+        if (!this.props.token) return true;
 
-    // handleFavoriteClick = async (rawMovie) => {
-    //     await addFavorite({
-    //         title: rawMovie.original_title,
-    //         genre: 'documentary',
-    //         director: 'martic scorsese',
-    //         year: rawMovie.release_date.slice(0, 4),
-    //         poster: rawMovie.poster_path || 'http://placekitten.com/300/300',
-    //         runtime: 90,
-    //         movie_db_id: rawMovie.id,
-    //     }, this.props.user.token);
+        const isItAPlaylist = this.state.publicPlaylists.find(playlist => playlist._id === playlist.id);
 
-    //     await this.doFavoritesFetch();
-    // }
-
-    // handleSearchChange = e => this.setState({ search: e.target.value })
-
-    // isAFavorite = (movie) => {
-    //     if (!this.props.token) return true;
-
-    //     const isIsFavorites = this.state.favorites.find(favorite => favorite.movie_db_id === movie.id);
-
-    //     return Boolean(isIsFavorites);
-    // }
+        return Boolean(isItAPlaylist);
+    }
 
 
     render() {
