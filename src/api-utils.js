@@ -20,8 +20,11 @@ export async function logInUser(email, password) {
 
 export async function getPlaylists(token){
   const response = await request
-  .get(`${URL}/playlist`)
-  .set('Authorization', token);
+  // .get(`${URL}/playlist`)
+  // .set('Authorization', 'Bearer ' + token);
+  .get('https://api.spotify.com/v1/me/playlists?limit=5&offset=5')
+  .set('Authorization', `Bearer ${token}`)
+  .set('Accept', 'application/json');
 
   return response.body;
 }

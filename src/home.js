@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { getPlaylists } from './api-utils';
 import logo from './logo.svg';
 import './App.css';
+import SpotifyPlayer from 'react-spotify-player';
+
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // Replace with your app's client ID, redirect URI and desired scopes
@@ -32,8 +34,11 @@ class home extends Component {
 
   fetchPlaylist = async () => {
     const playlist = await getPlaylists(hash.access_token);
-    console.log(playlist, 'PLAYLIST')
-    this.setState({ playlist });
+    console.log(playlist);
+    // console.log(playlist.items, 'PLAYLIST')
+    const playListItems = playlist.items;
+    this.setState({ playlist: playListItems });
+    console.log(playlist.items);
 }
 
   componentDidMount() {
@@ -55,10 +60,19 @@ class home extends Component {
 
 
   render() {
+    const size = {
+      width: '100%',
+      height: 300,
+    };
+    const view = 'list'; // or 'coverart'
+    const theme = 'black'; // or 'white'
+
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+         
+        
           {!this.state.token && (
             <a
               className="btn btn--loginApp-link"
@@ -69,9 +83,21 @@ class home extends Component {
               Login to Spotify
             </a>
           )}
+        
           {this.state.token && (
         // Spotify Player Will Go Here In the Next Step
-        this.state.playlist.map( songList => <div>{songList.name}</div>)
+        this.state.playlist.map( songList =>
+          <div>
+            <div>{songList.name}</div>
+                  <SpotifyPlayer
+                    uri={songList.uri}
+                    size={size}
+                    view={view}
+                    theme={theme}
+                  />
+
+            {/* <iframe src={`https://open.spotify.com/embed/playlist/${songList.id}`} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="hello"></iframe> */}
+          </div>) 
       )}
         </header>
       </div>
