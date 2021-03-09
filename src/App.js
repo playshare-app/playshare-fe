@@ -4,6 +4,7 @@ import './App.css';
 import Login from './login.js';
 import Signup from './signup.js';
 import Home from './home.js';
+import Playlist from './Playlist.js';
 // import Plants from './Search/plants.js';
 // import Favorites from './Favorites/favoriteList.js';
 import Header from './header.js';
@@ -38,6 +39,11 @@ export default class App extends React.Component {
               path="/"
               exact
               render={(routerProps) => <Home {...routerProps} />}
+            />
+            <Route
+              path="/playlist"
+              exact
+              render={(routerProps) => <Playlist {...routerProps} />}
             />
             <Route
               path="/login"

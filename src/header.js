@@ -6,6 +6,7 @@ export default class header extends Component {
     return (
       <div>
         <NavLink to="/">Home</NavLink>
+        <NavLink to="/playlist">Playlist</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/signup">Signup</NavLink>
         <button>Sign Out</button>

@@ -17,3 +17,11 @@ export async function logInUser(email, password) {
   });
   return response.body;
 }
+
+export async function getPlaylists(token){
+  const response = await request
+  .get(`${URL}/playlist`)
+  .set('Authorization', token);
+
+  return response.body;
+}
