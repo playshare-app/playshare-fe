@@ -18,30 +18,29 @@ export async function logInUser(email, password) {
   return response.body;
 }
 
-export async function getPlaylists(token){
+export async function getPlaylists(token) {
   const response = await request
-  // .get(`${URL}/playlist`)
-  // .set('Authorization', 'Bearer ' + token);
-  .get('https://api.spotify.com/v1/me/playlists?limit=5&offset=5')
-  .set('Authorization', `Bearer ${token}`)
-  .set('Accept', 'application/json');
+    // .get(`${URL}/playlist`)
+    // .set('Authorization', 'Bearer ' + token);
+    .get('https://api.spotify.com/v1/me/playlists?limit=5&offset=5')
+    .set('Authorization', `Bearer ${token}`)
+    .set('Accept', 'application/json');
 
   return response.body;
 }
 
 export async function addPublicPlaylist(playlist, token) {
   const response = await request
-      .post(`${URL}/api/playshare`)
-      .set('Authorization', token)
-      .send(playlist)
+    .post(`${URL}/api/playshare`)
+    .set('Authorization', token)
+    .send(playlist);
 
   return response.body;
 }
 
-export async function getPublicPlaylists(token) {
-  const response = await request
-      .get(`${URL}/api/playshare`)
-      .set('Authorization', token);
+export async function getPublicPlaylists() {
+  const response = await request.get(`${URL}/playshare`);
+  // .set('Authorization', token);
 
   return response.body;
 }
