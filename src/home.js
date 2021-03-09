@@ -61,23 +61,6 @@ class home extends Component {
     }
   }
 
-  //   handleSubmit = async (e) => {
-  //     e.preventDefault()
-
-  //     try {
-  //       await addPublicPlaylist(
-  //       {
-  //         name: this.state.playlist.name,
-  //         uri: this.state.playlist.uri,
-  //         playlist_id: this.state.playlist.id,
-  //         owner_name: this.state.playlist.owner.display_name,
-  //       }, this.user.token)
-  //     } catch(e) {
-  //         this.setState({ error: 'Uh oh, please login to add this to your favorites.' })
-  //     }
-
-  // }
-
   publicPlaylistFetch = async () => {
     const publicPlaylist = await getPublicPlaylists(this.state.user.token);
 

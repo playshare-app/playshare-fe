@@ -8,7 +8,8 @@ import Playlist from './Playlist.js';
 // import Plants from './Search/plants.js';
 // import Favorites from './Favorites/favoriteList.js';
 import Header from './header.js';
-// import PrivateRoute from './Components/private-route.js';
+import PrivateRoute from './PrivateRoute.js';
+
 import {
   getUserFromLocalStorage,
   putUserInLocalStorage
@@ -17,34 +18,44 @@ import {
 export default class App extends React.Component {
   state = {
     user: getUserFromLocalStorage()
-  }
+  };
 
   handleUserChange = (user) => {
-    this.setState({ user })
-    
+    this.setState({ user });
+
     putUserInLocalStorage(user);
-  }
+  };
 
   handleLogout = () => {
     this.handleUserChange();
+
     localStorage.clear();
-  }
+
+    window.location.replace('/signup');
+  };
 
   render() {
-    const { user } = this.state;
+    // const { user } = this.state;
     return (
       <div>
         <Router>
-          <Header user={ user } />        
+          <Header user={this.state.user} handleLogout={this.handleLogout} />
           <Switch>
             <Route
               path="/"
               exact
               render={(routerProps) => <Home {...routerProps} />}
             />
-            <Route 
+            {/* <Route
               path="/playlist"
               exact
+              render={(routerProps) => <Playlist {...routerProps} />}
+              user={this.state.user}
+            /> */}
+            <PrivateRoute
+              path="/playlist"
+              exact
+              token={this.state.user && this.state.user.token}
               render={(routerProps) => <Playlist {...routerProps} />}
               user={this.state.user}
             />
