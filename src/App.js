@@ -9,41 +9,44 @@ import Playlist from './Playlist.js';
 // import Favorites from './Favorites/favoriteList.js';
 import Header from './header.js';
 // import PrivateRoute from './Components/private-route.js';
-// import {
-//   getUserFromLocalStorage,
-//   putUserInLocalStorage
-// } from './local-storage-utils';
+import {
+  getUserFromLocalStorage,
+  putUserInLocalStorage
+} from './local-storage-utils';
 
 export default class App extends React.Component {
   state = {
-    user: ''
-  };
+    user: getUserFromLocalStorage()
+  }
 
-  // handleUserChange = (user) => {
-  //   this.setState({ user });
+  handleUserChange = (user) => {
+    this.setState({ user })
+    
+    putUserInLocalStorage(user);
+  }
 
-  //   putUserInLocalStorage(user);
-  // };
-
-  // handleUserLogout = () => {
-  //   this.handleUserChange();
-  // };
+  handleLogout = () => {
+    this.handleUserChange();
+    localStorage.clear();
+  }
 
   render() {
+    const { user } = this.state;
     return (
       <div>
         <Router>
-          <Header />
+          <Header user={ user } />        
           <Switch>
             <Route
               path="/"
               exact
               render={(routerProps) => <Home {...routerProps} />}
             />
-            <Route
+            <Route 
               path="/playlist"
               exact
               render={(routerProps) => <Playlist {...routerProps} />}
+              user={this.state.user}
             />
             <Route
               path="/login"

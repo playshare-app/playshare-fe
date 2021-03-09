@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 // import { getPlaylists } from './api-utils';
+import { getPublicPlaylists, addPublicPlaylist } from './api-utils.js';
 
-import hash from './home';
+// import hash from './home';
 
 
 export default class Playlist extends Component {
 
-    // state = {
-    //     playlist: [],
-    //     token: ''
-    //   };
+    state = {
+        publicPlaylist: [],
+      };
 
     // componentDidMount(){
     //     let _token = hash.access_token;
     //     if (_token) {
     //         localStorage.setItem('token', _token);
-    //         // Set token
+    //         Set token
     //         this.setState({
     //           token: _token
     //         });
@@ -24,11 +24,32 @@ export default class Playlist extends Component {
     //       }
     // }
 
-    // fetchVideos = async () => {
+    // fetchPlaylists = async () => {
     //     const playlist = await getPlaylists(hash.access_token);
     //     console.log(playlist, 'PLAYLIST')
     //     this.setState({ playlist });
     // }
+
+    componentDidMount = async() => {
+        if (this.props.token) await this.doPublicPlaylistFetch();
+    }
+
+    doPublicPlaylistFetch = async () => {
+        const publicPlaylist = await getPublicPlaylists(this.props.user.token);
+
+        this.setState({ publicPlaylist })
+
+    }
+
+
+
+    isAPublicPlaylist = (playlist) => {
+        if (!this.props.token) return true;
+
+        const isItAPlaylist = this.state.publicPlaylists.find(playlist => playlist._id === playlist.id);
+
+        return Boolean(isItAPlaylist);
+    }
 
 
     render() {
