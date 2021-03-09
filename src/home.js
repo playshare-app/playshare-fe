@@ -16,7 +16,7 @@ const hash = window.location.hash
       var parts = item.split('=');
       initial[parts[0]] = decodeURIComponent(parts[1]);
     }
-    console.log(hash);
+    
     return initial;
   }, {});
 window.location.hash = '';
