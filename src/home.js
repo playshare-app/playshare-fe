@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import hash from "./hash";
 // import Playlist from './Playlist'
 import { getPlaylists } from './api-utils';
-import logo from './logo.svg';
 import './App.css';
 import SpotifyPlayer from 'react-spotify-player';
 
@@ -57,6 +56,11 @@ class home extends Component {
     }
   }
 
+  handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('hello');
+  }
+
 
 
   render() {
@@ -95,7 +99,7 @@ class home extends Component {
                     view={view}
                     theme={theme}
                   />
-
+                  <button onClick={ this.handleSubmit }>Share!</button>
             {/* <iframe src={`https://open.spotify.com/embed/playlist/${songList.id}`} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="hello"></iframe> */}
           </div>) 
       )}

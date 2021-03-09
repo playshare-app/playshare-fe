@@ -13,11 +13,11 @@ export default class login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const user = await signUpUser(this.state.email, this.state.password);
       console.log(user);
-
+      this.props.handleUserChange(user);
       this.props.history.push('/');
     } catch (e) {
       this.setState({ error: e.response.body });

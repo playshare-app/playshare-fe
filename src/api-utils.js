@@ -28,3 +28,20 @@ export async function getPlaylists(token){
 
   return response.body;
 }
+
+export async function addPublicPlaylist(playlist, token) {
+  const response = await request
+      .post(`${URL}/api/playshare`)
+      .set('Authorization', token)
+      .send(playlist)
+
+  return response.body;
+}
+
+export async function getPublicPlaylists(token) {
+  const response = await request
+      .get(`${URL}/api/playshare`)
+      .set('Authorization', token);
+
+  return response.body;
+}
