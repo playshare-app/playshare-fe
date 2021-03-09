@@ -4,9 +4,8 @@ import React, { Component } from 'react';
 import { getPlaylists } from './api-utils';
 import './App.css';
 import SpotifyPlayer from 'react-spotify-player';
-import {  addPublicPlaylist, getPublicPlaylists } from './api-utils.js';
-import {  getUserFromLocalStorage} from './local-storage-utils.js';
-
+import { addPublicPlaylist, getPublicPlaylists } from './api-utils.js';
+import { getUserFromLocalStorage } from './local-storage-utils.js';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 // Replace with your app's client ID, redirect URI and desired scopes
@@ -22,7 +21,7 @@ export const hash = window.location.hash
       var parts = item.split('=');
       initial[parts[0]] = decodeURIComponent(parts[1]);
     }
-    
+
     return initial;
   }, {});
 window.location.hash = '';
@@ -35,7 +34,7 @@ class home extends Component {
     uri: ' ',
     playlist_id: ' ',
     owner_name: ' ',
-    playlist:[]
+    playlist: []
   };
 
   fetchPlaylist = async () => {
@@ -45,7 +44,7 @@ class home extends Component {
     const playListItems = playlist.items;
     this.setState({ playlist: playListItems });
     console.log(playlist);
-}
+  };
 
   componentDidMount() {
     // Set token
@@ -59,88 +58,84 @@ class home extends Component {
       });
       //this is where playlist GET would be
       this.fetchPlaylist();
-      
     }
   }
 
-//   handleSubmit = async (e) => {
-//     e.preventDefault()
+  //   handleSubmit = async (e) => {
+  //     e.preventDefault()
 
-//     try {
-//       await addPublicPlaylist(  
-//       {
-//         name: this.state.playlist.name,
-//         uri: this.state.playlist.uri,
-//         playlist_id: this.state.playlist.id,
-//         owner_name: this.state.playlist.owner.display_name,
-//       }, this.user.token)
-//     } catch(e) { 
-//         this.setState({ error: 'Uh oh, please login to add this to your favorites.' })
-//     }
+  //     try {
+  //       await addPublicPlaylist(
+  //       {
+  //         name: this.state.playlist.name,
+  //         uri: this.state.playlist.uri,
+  //         playlist_id: this.state.playlist.id,
+  //         owner_name: this.state.playlist.owner.display_name,
+  //       }, this.user.token)
+  //     } catch(e) {
+  //         this.setState({ error: 'Uh oh, please login to add this to your favorites.' })
+  //     }
 
-// }
+  // }
 
-publicPlaylistFetch = async () => {
-  const publicPlaylist = await getPublicPlaylists(this.user.token);
+  publicPlaylistFetch = async () => {
+    const publicPlaylist = await getPublicPlaylists(this.state.user.token);
 
-  this.setState({ publicPlaylist })
-}
+    this.setState({ publicPlaylist });
+  };
 
-handleSubmit = async (e) => {
-  e.preventDefault()
-  await addPublicPlaylist(  
-          {
-            name: this.state.songList.name,
-            uri: this.state.songList.uri,
-            playlist_id: this.state.songList.id,
-            owner_name: this.state.songList.display_name,
-          }, this.state.user.token)
-          console.log(this.state.songList.name);
-  await this.publicPlaylistFetch();
-
-}
-
-
+  handleSubmit = async (songList) => {
+    await addPublicPlaylist(
+      {
+        name: songList.name,
+        uri: songList.uri,
+        playlist_id: songList.id,
+        owner_name: songList.owner.display_name
+      },
+      this.state.user.token
+    );
+    console.log(songList);
+    await this.publicPlaylistFetch();
+  };
 
   render() {
     const size = {
       width: '100%',
-      height: 300,
+      height: 300
     };
     const view = 'list'; // or 'coverart'
     const theme = 'black'; // or 'white'
 
-
     return (
       <div className="App">
         <header className="App-header">
-         
-        
           {!this.state.token && (
             <a
               className="btn btn--loginApp-link"
               href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                "%20"
+                '%20'
               )}&response_type=token&show_dialog=true`}
             >
               Login to Spotify
             </a>
           )}
-        
-          {this.state.token && (
-        // Spotify Player Will Go Here In the Next Step
-        this.state.playlist.map( songList =>
-          <div>
-            <div>{songList.name}</div>
-                  <SpotifyPlayer
-                    uri={songList.uri}
-                    size={size}
-                    view={view}
-                    theme={theme}
-                  />
-                  <button onClick={ this.handleSubmit }>Share!</button>
-          </div>) 
-      )}
+
+          {this.state.token &&
+            // Spotify Player Will Go Here In the Next Step
+            this.state.playlist.map((songList) => (
+              <div key={songList.uri}>
+                <div>{songList.name}</div>
+                <SpotifyPlayer
+                  uri={songList.uri}
+                  size={size}
+                  view={view}
+                  theme={theme}
+                />
+                <button onClick={() => this.handleSubmit(songList)}>
+                  Share!
+                </button>
+              </div>
+            ))}
         </header>
       </div>
     );
