@@ -8,9 +8,6 @@ import {
   getSpotifyTokenFromLocalStorage
 } from './local-storage-utils.js';
 
-
-
-
 export default class Profile extends Component {
   state = {
     token: getSpotifyTokenFromLocalStorage(),
@@ -27,15 +24,13 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
-
     this.setState({
       token: getSpotifyTokenFromLocalStorage()
-    })
-
+    });
+    
     this.fetchSpotifyPlaylist();
     this.personalPlaylistFetch();
     this.publicPlaylistFetch();
-    
   }
 
   personalPlaylistFetch = async () => {
@@ -128,4 +123,3 @@ export default class Profile extends Component {
     );
   }
 }
-
