@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Login from './login.js';
-import Signup from './signup.js';
+import { Login } from './login.js';
+import { Signup } from './signup.js';
 import Profile from './profile.js';
 import Playlist from './Playlist.js';
 import Spotify from './spotify.js';
@@ -39,7 +39,7 @@ export default class App extends React.Component {
   render() {
     const { user } = this.state;
     return (
-      <div>
+      <div className="all-pages">
         <Router>
           <Header user={this.state.user} handleLogout={this.handleLogout} />
           <Switch>
