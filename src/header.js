@@ -14,6 +14,7 @@ export default class header extends Component {
       //   </div>
 
       <div>
+        <NavLink to="/profile">My Profile</NavLink>
         <NavLink to="/">Home</NavLink>
         {this.props.user && this.props.user.token && (
           <>

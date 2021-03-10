@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("frank-septillion-Qrspubmx6kE-unsplash.jpg");
+  background-position: center;
+  background-size: contain;
+  /* background-repeat: no-repeat; */
 }
 
 code {
