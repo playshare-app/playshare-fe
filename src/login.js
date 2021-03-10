@@ -17,8 +17,8 @@ export default class login extends Component {
     try {
       const user = await logInUser(this.state.email, this.state.password);
       console.log(user);
-        this.props.handleUserChange(user);
-        this.props.history.push('/');
+      this.props.handleUserChange(user);
+      this.props.history.push('/spotify');
     } catch (e) {
       this.setState({ error: e.response.body });
     }
