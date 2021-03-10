@@ -18,6 +18,20 @@ export function getUserFromLocalStorage() {
   }
 }
 
+export function getSpotifyTokenFromLocalStorage() {
+  let token = localStorage.getItem(TOKEN);
+
+  if (token) { 
+    return token;
+  } else {
+    return { 
+      token: ''
+    };
+  }
+
+}
+
+
 export function putUserInLocalStorage(user) {
   localStorage.setItem(USER, JSON.stringify(user));
 }
@@ -26,10 +40,3 @@ export function putSpotifyTokenInLocalStorage(_token) {
   localStorage.setItem('token', _token);
 }
 
-export function getSpotifyTokenFromLocalStorage() {
-  let token = localStorage.getItem(TOKEN);
-
-  token = JSON.parse(token);
-
-  return token;
-}
