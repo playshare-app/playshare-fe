@@ -7,7 +7,7 @@ import {
   getUserFromLocalStorage,
   getSpotifyTokenFromLocalStorage
 } from './local-storage-utils.js';
-import hash from './hash.js';
+// import hash from './hash.js';
 
 export default class Profile extends Component {
   state = {
@@ -28,13 +28,11 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
-
     this.setState({
       token: getSpotifyTokenFromLocalStorage()
-    })
+    });
 
     this.fetchPlaylist();
-    
   }
 
   publicPlaylistFetch = async () => {
@@ -99,4 +97,3 @@ export default class Profile extends Component {
     );
   }
 }
-
