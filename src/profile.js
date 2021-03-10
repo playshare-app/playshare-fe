@@ -2,29 +2,28 @@ import React, { Component } from 'react';
 import { getPlaylists } from './api-utils';
 import './App.css';
 import SpotifyPlayer from 'react-spotify-player';
-import { addPublicPlaylist, getPublicPlaylists } from './api-utils.js';
+import { addPublicPlaylist, getPublicPlaylists, deletePublicPlaylist, getPublicPlaylistPersonal } from './api-utils.js';
 import {
   getUserFromLocalStorage,
   getSpotifyTokenFromLocalStorage
 } from './local-storage-utils.js';
-import hash from './hash.js';
+
+
+
 
 export default class Profile extends Component {
   state = {
     token: getSpotifyTokenFromLocalStorage(),
     user: getUserFromLocalStorage(),
-    name: ' ',
-    uri: ' ',
-    playlist_id: ' ',
-    owner_name: ' ',
-    playlist: []
+    playlist: [], //SPOTIFY ARRAY - fetchSpotifyPlaylist
+    publicPlaylist: [], //PUBLIC ARRAY - publicPlaylistFetch
+    personalPublic: [], //PERSONAL PUBLIC ARRAY - 
   };
 
-  fetchPlaylist = async () => {
+  fetchSpotifyPlaylist = async () => {
     const playlist = await getPlaylists(this.state.token);
     const playListItems = playlist.items;
     this.setState({ playlist: playListItems });
-    console.log(playlist);
   };
 
   componentDidMount() {
@@ -33,9 +32,17 @@ export default class Profile extends Component {
       token: getSpotifyTokenFromLocalStorage()
     })
 
-    this.fetchPlaylist();
+    this.fetchSpotifyPlaylist();
+    this.personalPlaylistFetch();
+    this.publicPlaylistFetch();
     
   }
+
+  personalPlaylistFetch = async () => {
+    const personalPublic = await getPublicPlaylistPersonal(this.state.user.token);
+
+    this.setState({ personalPublic });
+  };
 
   publicPlaylistFetch = async () => {
     const publicPlaylist = await getPublicPlaylists(this.state.user.token);
@@ -53,9 +60,27 @@ export default class Profile extends Component {
       },
       this.state.user.token
     );
-    console.log(songList);
+
     await this.publicPlaylistFetch();
+    await this.personalPlaylistFetch();
+    
   };
+
+
+  handleDelete = async (id) => {
+    await deletePublicPlaylist(id, this.state.user.token);
+    await this.publicPlaylistFetch();
+    await this.personalPlaylistFetch();
+  };
+
+  isAlreadyShared = (booger) => {
+    console.log(this.state.personalPublic, 'PUBLIC')
+    console.log(booger, 'BOOGER')
+    const isIsShared = this.state.personalPublic.find(test => test.playlist_id === booger.id);
+    console.log(isIsShared, 'SHAREDDDD')
+
+    return Boolean(isIsShared);
+}
 
   render() {
     const size = {
@@ -68,17 +93,7 @@ export default class Profile extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* {!this.state.token && (
-            <a
-              className="btn btn--loginApp-link"
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                '%20'
-              )}&response_type=token&show_dialog=true`}
-            >
-              Login to Spotify
-            </a>
-          )} */}
-
+        <div>SPOTIFY LIST</div>
           {this.state.token &&
             this.state.playlist.map((songList) => (
               <div key={songList.uri}>
@@ -89,11 +104,25 @@ export default class Profile extends Component {
                   view={view}
                   theme={theme}
                 />
-                <button onClick={() => this.handleSubmit(songList)}>
-                  Share!
-                </button>
+
+                        <p>{
+                        this.isAlreadyShared(songList) 
+                            ? '<3' 
+                            : <button onClick={() => this.handleSubmit(songList)}>Share!</button>
+                        }</p>
               </div>
             ))}
+
+
+            <div>PRIVATE LIST</div>
+            {this.state.personalPublic.map((songList) => (
+              <div key={songList.name}>
+                <div>{songList.name}</div>
+                <button onClick={() => this.handleDelete(songList.id)}>
+                  Delete Publicly
+                </button>
+              </div>
+            ))}   
         </header>
       </div>
     );

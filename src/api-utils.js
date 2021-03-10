@@ -37,10 +37,27 @@ export async function addPublicPlaylist(playlist, token) {
 
   return response.body;
 }
+//DELETE
+export async function deletePublicPlaylist(id, token) {
+  const response = await request
+    .delete(`${URL}/api/myplaylists/${id}`)
+    .set('Authorization', token)
+    // .send(playlist);
+
+  return response.body;
+}
 
 export async function getPublicPlaylists() {
   const response = await request.get(`${URL}/playshare`);
   // .set('Authorization', token);
+
+  return response.body;
+}
+
+export async function getPublicPlaylistPersonal(token) {
+  const response = await request
+  .get(`${URL}/api/myplaylists`)
+  .set('Authorization', token)
 
   return response.body;
 }
