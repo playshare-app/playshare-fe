@@ -11,6 +11,8 @@ import Spotify from './spotify.js';
 import Home from './home.js';
 import Header from './header.js';
 import PrivateRoute from './PrivateRoute.js';
+import { TemporaryDrawer } from './leftDrawer.js'
+
 
 import {
   getUserFromLocalStorage,
@@ -33,8 +35,20 @@ export default class App extends React.Component {
 
     localStorage.clear();
 
-    window.location.replace('/signup');
+    window.location.replace('/');
   };
+
+  redirectHome = () => { 
+    window.location.replace('/')
+  }
+
+  redirectMyProfile = () => { 
+    window.location.replace('/profile')
+  }
+
+  redirectPlaylists = () => { 
+    window.location.replace('/playlist')
+  }
 
   render() {
     const { user } = this.state;
@@ -52,6 +66,16 @@ export default class App extends React.Component {
               path="/"
               exact
               render={(routerProps) => <Home {...routerProps} />}
+            />
+              <Route
+              path="/left"
+              exact
+              render={(routerProps) => <TemporaryDrawer {...routerProps}
+              handleLogout={this.handleLogout}
+              redirectHome={this.redirectHome}
+              redirectMyProfile={this.redirectMyProfile}
+              redirectPlaylists={this.redirectPlaylists}
+             />}
             />
             <Route
               path="/spotify"

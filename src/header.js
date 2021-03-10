@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { TemporaryDrawer } from './leftDrawer.js'
 
 export default class header extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class header extends Component {
       //   </div>
 
       <div>
+        <TemporaryDrawer/>
         <NavLink to="/profile">My Profile</NavLink>
         <NavLink to="/">Home</NavLink>
         {this.props.user && this.props.user.token && (
