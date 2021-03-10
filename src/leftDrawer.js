@@ -29,7 +29,8 @@ const useStyles = makeStyles({
 
 });
 
-export function TemporaryDrawer() {
+export function TemporaryDrawer( props ) {
+  console.log(props);
   const classes = useStyles();
   
   const [state, setState] = React.useState({
@@ -46,17 +47,34 @@ export function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-
+  // {['Home', 'My Profile', 'Playlists', 'Logout']
   const list = (anchor) => (
     <div
       className={clsx(classes.list)}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-    >
+    >,
       <List>
-        {['Home', 'My Profile', 'Playlists', 'Logout'].map((text, index) => (
-          <ListItem button key={text} style={{marginTop: '25px'}}>
+        {[{
+          name: 'Home',
+          utility: props['redirectHome']
+        },
+        {
+          name: 'My Profile',
+          utility: props['redirectMyProfile']
+        },
+        {
+          name: 'Playlists',
+          utility: props['redirectPlaylists']
+        },
+        {
+          name: 'Logout',
+          utility: props['handleLogout']
+        },
+        ].map((text, index) => (
+          console.log(text),
+          <ListItem onClick={text.utility} button key={text.name} style={{marginTop: '25px'}}>
             <ListItemIcon>
             {(() => { 
                 if (index === 0 ) { 
@@ -66,12 +84,12 @@ export function TemporaryDrawer() {
             } else if (index === 2) { 
                 return <QueueMusicIcon style={{color: 'white'}}  />
             } else { 
-               return <ExitToAppIcon style={{color: 'white'}}  />
+               return <ExitToAppIcon style={{color: 'white'}} />
         
             }}) ()}
             
             </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>
