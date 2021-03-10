@@ -1,7 +1,9 @@
 import request from 'superagent';
 
-const URL = 'http://localhost:3000';
-// const URL = 'https://serene-thicket-62850.herokuapp.com'
+
+// const URL = 'http://localhost:3000';
+const URL = 'https://serene-thicket-62850.herokuapp.com'
+
 
 export async function signUpUser(email, password) {
   const response = await request.post(`${URL}/auth/signup`).send({
