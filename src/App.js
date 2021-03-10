@@ -5,6 +5,7 @@ import Login from './login.js';
 import Signup from './signup.js';
 import Home from './home.js';
 import Playlist from './Playlist.js';
+import Spotify from './spotify.js';
 // import Plants from './Search/plants.js';
 // import Favorites from './Favorites/favoriteList.js';
 import Header from './header.js';
@@ -35,7 +36,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    // const { user } = this.state;
+    const { user } = this.state;
     return (
       <div>
         <Router>
@@ -46,16 +47,15 @@ export default class App extends React.Component {
               exact
               render={(routerProps) => <Home {...routerProps} />}
             />
-            {/* <Route
-              path="/playlist"
+            <Route
+              path="/spotify"
               exact
-              render={(routerProps) => <Playlist {...routerProps} />}
-              user={this.state.user}
-            /> */}
+              render={(routerProps) => <Spotify {...routerProps} />}
+            />
             <PrivateRoute
               path="/playlist"
               exact
-              token={this.state.user && this.state.user.token}
+              token={user && user.token}
               render={(routerProps) => <Playlist {...routerProps} />}
               user={this.state.user}
             />
