@@ -50,6 +50,10 @@ export default class App extends React.Component {
     window.location.replace('/playlist')
   }
 
+  redirectToSignUp = () => { 
+    window.location.replace('/signup')
+  }
+
   render() {
     const { user } = this.state;
     return (
@@ -60,6 +64,7 @@ export default class App extends React.Component {
            redirectHome={this.redirectHome}
            redirectMyProfile={this.redirectMyProfile}
            redirectPlaylists={this.redirectPlaylists}
+           redirectToSignUp={this.redirectToSignUp}
          />
           <Switch>
             <PrivateRoute

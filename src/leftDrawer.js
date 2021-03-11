@@ -12,6 +12,10 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import MenuIcon from '@material-ui/icons/Menu';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 const useStyles = makeStyles({
   list: {
@@ -69,6 +73,10 @@ export function TemporaryDrawer( props ) {
           utility: props['redirectPlaylists']
         },
         {
+          name: 'Signup',
+          utility: props['redirectToSignUp']
+        },
+        {
           name: 'Logout',
           utility: props['handleLogout']
         },
@@ -83,6 +91,8 @@ export function TemporaryDrawer( props ) {
                 return <PersonIcon style={{color: 'white'}}  />
             } else if (index === 2) { 
                 return <QueueMusicIcon style={{color: 'white'}}  />
+            } else if ( index === 3 ) {
+                return <PostAddIcon style={{ color: 'white'}}  />
             } else { 
                return <ExitToAppIcon style={{color: 'white'}} />
         
@@ -100,7 +110,9 @@ export function TemporaryDrawer( props ) {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} style={{color: 'white'}}>Menu</Button>
+          <Tooltip title="Menu">
+            <Button onClick={toggleDrawer(anchor, true)} style={{color: 'white'}}><MenuIcon/></Button>
+          </Tooltip>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
