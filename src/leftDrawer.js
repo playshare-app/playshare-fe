@@ -11,7 +11,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home'; 
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
+import MenuIcon from '@material-ui/icons/Menu';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 
 const useStyles = makeStyles({
   list: {
@@ -69,6 +71,10 @@ export function TemporaryDrawer( props ) {
           utility: props['redirectPlaylists']
         },
         {
+          name: 'Signup',
+          utility: props['redirectToSignUp']
+        },
+        {
           name: 'Logout',
           utility: props['handleLogout']
         },
@@ -78,13 +84,15 @@ export function TemporaryDrawer( props ) {
             <ListItemIcon>
             {(() => { 
                 if (index === 0 ) { 
-                return <HomeIcon style={{color: 'white'}} />
-            } else if ( index === 1) { 
-                return <PersonIcon style={{color: 'white'}}  />
-            } else if (index === 2) { 
-                return <QueueMusicIcon style={{color: 'white'}}  />
-            } else { 
-               return <ExitToAppIcon style={{color: 'white'}} />
+                  return <HomeIcon style={{color: 'rgba(140,30,255)'}} />
+              } else if ( index === 1) { 
+                  return <PersonIcon style={{color: 'rgba(242,34,255)'}}  />
+              } else if (index === 2) { 
+                  return <QueueMusicIcon style={{color: 'rgba(255,41,117)'}}  />
+              } else if ( index === 3 ) {
+                  return <PostAddIcon style={{ color: 'rgba(255,144,31)'}}  />
+              } else { 
+                 return <ExitToAppIcon style={{color: 'rgba(255,211,25)'}} />
         
             }}) ()}
             
@@ -100,7 +108,7 @@ export function TemporaryDrawer( props ) {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} style={{color: 'white'}}>Menu</Button>
+          <Button onClick={toggleDrawer(anchor, true)} style={{color: 'rgba(140,30,255)'}}><MenuIcon/></Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

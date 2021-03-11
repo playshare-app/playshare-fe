@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { TemporaryDrawer } from './leftDrawer.js'
 
 export default class header extends Component {
@@ -21,6 +21,7 @@ export default class header extends Component {
         redirectHome={this.props.redirectHome}
         redirectMyProfile={this.props.redirectMyProfile}
         redirectPlaylists={this.props.redirectPlaylists}
+        redirectToSignUp={this.props.redirectToSignUp}
         />
         {/* <NavLink to="/profile">My Profile</NavLink>
         <NavLink to="/">Home</NavLink>

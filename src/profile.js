@@ -87,7 +87,8 @@ export default class Profile extends Component {
 
     return (
       <div className="App">
-        <header className="playlists">
+        <header className="wrapper">
+          <div className = "playlists">
           {this.state.token &&
             this.state.playlist.map((songList) => (
               <div className="playlist-item" key={songList.uri}>
@@ -105,20 +106,26 @@ export default class Profile extends Component {
                             : <button className= "btn-secondary" onClick={() => this.handleSubmit(songList)}><img src="https://fontmeme.com/permalink/210311/59137af53d9aa87d6ca48a739f509f63.png" alt="mexcellent-font" border="0"/></button>
                         }</p>
               </div>
-            ))}
+            ))} </div>
 
 
-            
+            <div className = "public">
             {this.state.personalPublic.map((songList) => (
               <div className="shared-playlist-item" key={songList.name}>
                 <div className="playlist-name">{songList.name}</div>
+                <SpotifyPlayer 
+                  uri={songList.uri}
+                  size={size}
+                  view={view}
+                  theme={theme}
+                /> 
                 <div className="button-wrapper">
                   <button className="btn-secondary" onClick={() => this.handleDelete(songList.id)}>
                       <img src="https://fontmeme.com/permalink/210311/c284f126afe899f80c59bcb7f8e1193f.png" alt="mexcellent-font" border="0"/>
                   </button>
                 </div>
               </div>
-            ))}   
+            ))}  </div>
         </header>
       </div>
     );
