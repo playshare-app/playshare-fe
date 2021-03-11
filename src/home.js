@@ -46,7 +46,7 @@ class home extends Component {
               className="btn btn--loginApp-link"
               href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&show_dialog=true`}
             >
-              Login to Spotify
+              Login to Spotify!
             </a>
           )}
           {/* {this.state.token && (
