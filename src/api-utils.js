@@ -64,3 +64,22 @@ export async function getPublicPlaylistPersonal(token) {
 
   return response.body;
 }
+
+//COMMENTS ONLY ===========
+
+export async function postComment(comment_test, user_email, playlistid) {
+  const response = await request
+  .post(`${URL}/comments`)
+  .send({comment_test, user_email, playlistid});
+  //.set('Authorization', token)
+
+  return response.body;
+}
+
+export async function getPublicComments() {
+  const response = await request.get(`${URL}/comments`);
+  // .set('Authorization', token);
+
+  return response.body;
+}
+

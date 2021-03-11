@@ -21,6 +21,7 @@ export default class Profile extends Component {
     const playlist = await getPlaylists(this.state.token);
     const playListItems = playlist.items;
     this.setState({ playlist: playListItems });
+    console.log(playlist, 'PLAYLISTTTT')
   };
 
   componentDidMount() {
@@ -70,9 +71,7 @@ export default class Profile extends Component {
 
   isAlreadyShared = (booger) => {
     console.log(this.state.personalPublic, 'PUBLIC')
-    console.log(booger, 'BOOGER')
     const isIsShared = this.state.personalPublic.find(test => test.playlist_id === booger.id);
-    console.log(isIsShared, 'SHAREDDDD')
 
     return Boolean(isIsShared);
 }
