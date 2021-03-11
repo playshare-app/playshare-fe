@@ -18,16 +18,17 @@ export default class Playlist extends Component {
 
   render() {
     const size = {
-      width: '100%',
-      height: 300
+      width: 'small',
+      height: 200
     };
     const view = 'list'; // or 'coverart'
     const theme = 'black'; // or 'white'
     return (
-      <div className="main-image">
+      <div className="public-playlists">
         {this.state.publicPlaylist.map((songList) => (
-          <div key={songList.uri}>
-            <div>{songList.name}</div>
+          <div className="public-playlist-item" key={songList.uri}>
+          <div className="playlist-name">{songList.name}</div>
+            <div className="owner-name">Posted By: {songList.owner_name}</div>
             <SpotifyPlayer
               uri={songList.uri}
               size={size}
