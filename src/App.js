@@ -55,12 +55,22 @@ export default class App extends React.Component {
     return (
       <div className="all-pages">
         <Router>
-          <Header user={this.state.user} handleLogout={this.handleLogout} />
+          <Header user={this.state.user} 
+           handleLogout={this.handleLogout}
+           redirectHome={this.redirectHome}
+           redirectMyProfile={this.redirectMyProfile}
+           redirectPlaylists={this.redirectPlaylists}
+         />
           <Switch>
-            <Route
+            <PrivateRoute
               path="/profile"
               exact
-              render={(routerProps) => <Profile {...routerProps} />}
+              token={user && user.token}
+              render={(routerProps) => <Profile {...routerProps}
+              handleLogout={this.handleLogout}
+              redirectHome={this.redirectHome}
+              redirectMyProfile={this.redirectMyProfile}
+              redirectPlaylists={this.redirectPlaylists} />}
             />
              <Route
               path="/"

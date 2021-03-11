@@ -4,6 +4,7 @@ import { TemporaryDrawer } from './leftDrawer.js'
 
 export default class header extends Component {
   render() {
+    // console.log(this.props);
     return (
       //   <div>
       //     <NavLink to="/">Home</NavLink>
@@ -15,8 +16,13 @@ export default class header extends Component {
       //   </div>
 
       <div>
-        <TemporaryDrawer/>
-        <NavLink to="/profile">My Profile</NavLink>
+        <TemporaryDrawer
+        handleLogout={this.props.handleLogout}
+        redirectHome={this.props.redirectHome}
+        redirectMyProfile={this.props.redirectMyProfile}
+        redirectPlaylists={this.props.redirectPlaylists}
+        />
+        {/* <NavLink to="/profile">My Profile</NavLink>
         <NavLink to="/">Home</NavLink>
         {this.props.user && this.props.user.token && (
           <>
@@ -29,7 +35,7 @@ export default class header extends Component {
             <NavLink to="/login">Log In</NavLink>
             <NavLink to="/signup">Sign Up</NavLink>
           </>
-        )}
+        )} */}
       </div>
     );
   }

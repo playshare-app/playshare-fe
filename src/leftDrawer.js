@@ -73,7 +73,7 @@ export function TemporaryDrawer( props ) {
           utility: props['handleLogout']
         },
         ].map((text, index) => (
-          console.log(text),
+          // console.log(text),
           <ListItem onClick={text.utility} button key={text.name} style={{marginTop: '25px'}}>
             <ListItemIcon>
             {(() => { 
@@ -98,7 +98,7 @@ export function TemporaryDrawer( props ) {
 
   return (
     <div>
-      {['right'].map((anchor) => (
+      {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)} style={{color: 'white'}}>Menu</Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
