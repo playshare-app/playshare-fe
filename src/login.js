@@ -58,6 +58,7 @@ export function Login(props) {
       const user = await logInUser(email, password);
 
       props.handleUserChange(user);
+
       window.location.replace(
         `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
           '%20'
