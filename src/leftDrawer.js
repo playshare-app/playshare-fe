@@ -14,6 +14,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import Tooltip from '@material-ui/core/Tooltip';
+
+
 
 const useStyles = makeStyles({
   list: {
@@ -93,7 +96,7 @@ export function TemporaryDrawer( props ) {
                   return <PostAddIcon style={{ color: 'rgba(255,144,31)'}}  />
               } else { 
                  return <ExitToAppIcon style={{color: 'rgba(255,211,25)'}} />
-        
+
             }}) ()}
             
             </ListItemIcon>
@@ -108,7 +111,9 @@ export function TemporaryDrawer( props ) {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)} style={{color: 'rgba(140,30,255)'}}><MenuIcon/></Button>
+          <Tooltip title="Menu">
+           <Button onClick={toggleDrawer(anchor, true)} style={{color: 'rgba(140,30,255)'}}><MenuIcon/></Button>
+          </Tooltip>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
