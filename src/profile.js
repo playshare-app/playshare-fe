@@ -79,20 +79,20 @@ export default class Profile extends Component {
 
   render() {
     const size = {
-      width: '100%',
-      height: 300
+      width: 'small',
+      height: 200
     };
     const view = 'list'; // or 'coverart'
     const theme = 'black'; // or 'white'
 
     return (
       <div className="App">
-        <header className="App-header">
-        <div>SPOTIFY LIST</div>
+        <header className="wrapper">
+          <div className = "playlists">
           {this.state.token &&
             this.state.playlist.map((songList) => (
-              <div key={songList.uri}>
-                <div>{songList.name}</div>
+              <div className="playlist-item" key={songList.uri}>
+                <div className="playlist-name">{songList.name}</div>
                 <SpotifyPlayer
                   uri={songList.uri}
                   size={size}
@@ -102,22 +102,30 @@ export default class Profile extends Component {
 
                         <p>{
                         this.isAlreadyShared(songList) 
-                            ? '<3' 
-                            : <button onClick={() => this.handleSubmit(songList)}>Share!</button>
+                            ? '🎸' 
+                            : <button className= "btn-secondary" onClick={() => this.handleSubmit(songList)}><img src="https://fontmeme.com/permalink/210311/59137af53d9aa87d6ca48a739f509f63.png" alt="mexcellent-font" border="0"/></button>
                         }</p>
               </div>
-            ))}
+            ))} </div>
 
 
-            <div>PRIVATE LIST</div>
+            <div className = "public">
             {this.state.personalPublic.map((songList) => (
-              <div key={songList.name}>
-                <div>{songList.name}</div>
-                <button onClick={() => this.handleDelete(songList.id)}>
-                  Delete Publicly
-                </button>
+              <div className="shared-playlist-item" key={songList.name}>
+                <div className="playlist-name">{songList.name}</div>
+                <SpotifyPlayer 
+                  uri={songList.uri}
+                  size={size}
+                  view={view}
+                  theme={theme}
+                /> 
+                <div className="button-wrapper">
+                  <button className="btn-secondary" onClick={() => this.handleDelete(songList.id)}>
+                      <img src="https://fontmeme.com/permalink/210311/c284f126afe899f80c59bcb7f8e1193f.png" alt="mexcellent-font" border="0"/>
+                  </button>
+                </div>
               </div>
-            ))}   
+            ))}  </div>
         </header>
       </div>
     );
