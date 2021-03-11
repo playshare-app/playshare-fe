@@ -90,6 +90,7 @@ export default class App extends React.Component {
               redirectHome={this.redirectHome}
               redirectMyProfile={this.redirectMyProfile}
               redirectPlaylists={this.redirectPlaylists}
+              redirectToSignUp={this.redirectToSignUp}
              />}
             />
             <Route
