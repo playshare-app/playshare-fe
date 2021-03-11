@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import SpotifyPlayer from 'react-spotify-player';
-
 import { getPublicPlaylists } from './api-utils.js';
 import { getUserFromLocalStorage } from './local-storage-utils.js';
+import { CommentBox } from './leaveComment.js';
 
 export default class Playlist extends Component {
   state = {
     publicPlaylist: [],
-    user: getUserFromLocalStorage()
+    user: getUserFromLocalStorage(),
+    comment: '',
   };
 
   componentDidMount = async () => {
@@ -34,7 +35,10 @@ export default class Playlist extends Component {
               size={size}
               view={view}
               theme={theme}
-            />
+              />
+              <div>
+               <CommentBox />  
+               </div>
           </div>
         ))}
       </div>
