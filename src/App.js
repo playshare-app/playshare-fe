@@ -35,7 +35,7 @@ export default class App extends React.Component {
 
     localStorage.clear();
 
-    window.location.replace('/');
+    window.location.replace('/login');
   };
 
   redirectHome = () => { 
