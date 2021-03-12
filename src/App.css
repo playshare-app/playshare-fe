@@ -192,7 +192,14 @@ form {
   margin: 10px;
 }
 
+.signup {
+  padding: 50px;
+  color: white;
+}
 
+.signup:hover {
+  color: purple;
+}
 
 
 
