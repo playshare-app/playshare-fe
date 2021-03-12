@@ -88,7 +88,7 @@ export default class Profile extends Component {
       <div className="App">
         <header className="wrapper">
           <div className="title">
-            <img src="https://fontmeme.com/permalink/210312/360b60a659383c9af8f4b5295e92415c.png" alt="mexcellent-font" border="0"/>
+            <img src="https://fontmeme.com/permalink/210312/17ce60ec5be6c5e7d3f29168044d3ad4.png" alt="mexcellent-font" border="0"/>
             </div>
           <div className = "playlists">
           {this.state.token &&
@@ -110,7 +110,9 @@ export default class Profile extends Component {
               </div>
             ))} </div>
 
-
+            <div className="title">
+              <img src="https://fontmeme.com/permalink/210312/52ac5c4192db7523d472da8e6b5dfb18.png" alt="mexcellent-font" border="0"/>
+            </div>
             <div className = "public">
             {this.state.personalPublic.map((songList) => (
               <div className="shared-playlist-item" key={songList.name}>

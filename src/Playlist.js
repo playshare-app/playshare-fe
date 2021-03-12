@@ -59,6 +59,10 @@ export default class Playlist extends Component {
     const view = 'list'; 
     const theme = 'black'; 
     return (
+      <div>
+      <div className="title">
+        <img src="https://fontmeme.com/permalink/210312/52ac5c4192db7523d472da8e6b5dfb18.png" alt="mexcellent-font" border="0"/>
+       </div>
       <div className="public-playlists">
         {this.state.publicPlaylist.map((songList) => (
           <div className="public-playlist-item" key={songList.uri}>
@@ -75,6 +79,7 @@ export default class Playlist extends Component {
         ))}   
 
         
+      </div>
       </div>
     );
   }
