@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+
+import React, {Component} from 'react';
 import SpotifyPlayer from 'react-spotify-player';
 
-import { getPublicPlaylists, postComment, getPublicComments } from './api-utils.js';
-import { getUserFromLocalStorage } from './local-storage-utils.js';
+import {getPublicPlaylists, postComment, getPublicComments} from './api-utils.js';
+import {getUserFromLocalStorage} from './local-storage-utils.js';
 
 export default class Playlist extends Component {
   state = {
     publicPlaylist: [],
     user: getUserFromLocalStorage(),
     comments: [],
-    comment_test:'',
+    comment_test: '',
     user_email: '',
-    playlistid:'',
+    playlistid: '',
 
 
   };
@@ -19,7 +20,7 @@ export default class Playlist extends Component {
   componentDidMount = async () => {
     const publicPlaylist = await getPublicPlaylists(this.state.user.token);
 
-    this.setState({ publicPlaylist });
+    this.setState({publicPlaylist});
     console.log(publicPlaylist, 'PUBLICCCC PLAYLIST ARRAY')
 
     this.publicCommentsFetch();
@@ -31,7 +32,7 @@ export default class Playlist extends Component {
     console.log(comments, 'PUBLICCCC COMMENTS ARRAY')
 
 
-    this.setState({ comments });
+    this.setState({comments});
   };
 
   
@@ -47,10 +48,10 @@ export default class Playlist extends Component {
     );
     await this.publicCommentsFetch();
 
-    this.setState({ comment_test: '', user_email: '', playlistid: '', })
+    this.setState({comment_test: '', user_email: '', playlistid: '', })
   };
 
-  render() {
+  render () {
     const size = {
       width: 'small',
       height: 200
@@ -61,7 +62,7 @@ export default class Playlist extends Component {
       <div className="public-playlists">
         {this.state.publicPlaylist.map((songList) => (
           <div className="public-playlist-item" key={songList.uri}>
-          <div className="playlist-name">{songList.name}</div>
+            <div className="playlist-name">{songList.name}</div>
             <div className="owner-name">Posted By: {songList.owner_name}</div>
             <SpotifyPlayer
               uri={songList.uri}
@@ -70,7 +71,10 @@ export default class Playlist extends Component {
               theme={theme}
             />
           </div>
+
         ))}   
+
+        
       </div>
     );
   }

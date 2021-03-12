@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { logInUser } from './api-utils';
+import {logInUser} from './api-utils';
 
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 const clientId = '39c212be9cbf4cffae633afcac06a90f';
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export function Login(props) {
+export function Login (props) {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -73,7 +73,7 @@ export function Login(props) {
     <form className={classes.root} noValidate autoComplete="off">
       <h2>LogIn</h2>
       {error && (
-        <h5 style={{ color: 'red' }}>Uh oh, {error}, please try again!</h5>
+        <h5 style={{color: 'red'}}>Uh oh, {error}, please try again!</h5>
       )}
       <TextField
         className={classes.child}
