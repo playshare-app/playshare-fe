@@ -73,7 +73,7 @@ export function TemporaryDrawer( props ) {
           utility: props['redirectPlaylists']
         },
         {
-          name: 'Signup',
+          name: 'Sign Up',
           utility: props['redirectToSignUp']
         },
         {
@@ -81,7 +81,7 @@ export function TemporaryDrawer( props ) {
           utility: props['redirectToAboutUs']
         },
         {
-          name: 'Logout',
+          name: 'Log Out',
           utility: props['handleLogout']
         },
         ].map((text, index) => (
