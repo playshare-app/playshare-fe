@@ -1,43 +1,109 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Login from './login.js';
-import Signup from './signup.js';
-import Home from './home.js';
+import { Login } from './login.js';
+import { Signup } from './signup.js';
+import Profile from './profile.js';
+import Playlist from './Playlist.js';
+import Spotify from './spotify.js';
 // import Plants from './Search/plants.js';
 // import Favorites from './Favorites/favoriteList.js';
+import Home from './home.js';
 import Header from './header.js';
-// import PrivateRoute from './Components/private-route.js';
-// import {
-//   getUserFromLocalStorage,
-//   putUserInLocalStorage
-// } from './local-storage-utils';
+import PrivateRoute from './PrivateRoute.js';
+import { TemporaryDrawer } from './leftDrawer.js'
+
+
+import {
+  getUserFromLocalStorage,
+  putUserInLocalStorage
+} from './local-storage-utils';
 
 export default class App extends React.Component {
   state = {
-    user: ''
+    user: getUserFromLocalStorage()
   };
 
-  // handleUserChange = (user) => {
-  //   this.setState({ user });
+  handleUserChange = (user) => {
+    this.setState({ user });
 
-  //   putUserInLocalStorage(user);
-  // };
+    putUserInLocalStorage(user);
+  };
 
-  // handleUserLogout = () => {
-  //   this.handleUserChange();
-  // };
+  handleLogout = () => {
+    this.handleUserChange();
+
+    localStorage.clear();
+
+    window.location.replace('/login');
+  };
+
+  redirectHome = () => { 
+    window.location.replace('/')
+  }
+
+  redirectMyProfile = () => { 
+    window.location.replace('/profile')
+  }
+
+  redirectPlaylists = () => { 
+    window.location.replace('/playlist')
+  }
+
+  redirectToSignUp = () => { 
+    window.location.replace('/signup')
+  }
 
   render() {
+    const { user } = this.state;
     return (
-      <div>
+      <div className="all-pages">
         <Router>
-          <Header />
+          <Header user={this.state.user} 
+           handleLogout={this.handleLogout}
+           redirectHome={this.redirectHome}
+           redirectMyProfile={this.redirectMyProfile}
+           redirectPlaylists={this.redirectPlaylists}
+           redirectToSignUp={this.redirectToSignUp}
+         />
           <Switch>
-            <Route
+            <PrivateRoute
+              path="/profile"
+              exact
+              token={user && user.token}
+              render={(routerProps) => <Profile {...routerProps}
+              handleLogout={this.handleLogout}
+              redirectHome={this.redirectHome}
+              redirectMyProfile={this.redirectMyProfile}
+              redirectPlaylists={this.redirectPlaylists} />}
+            />
+             <Route
               path="/"
               exact
               render={(routerProps) => <Home {...routerProps} />}
+            />
+              <Route
+              path="/left"
+              exact
+              render={(routerProps) => <TemporaryDrawer {...routerProps}
+              handleLogout={this.handleLogout}
+              redirectHome={this.redirectHome}
+              redirectMyProfile={this.redirectMyProfile}
+              redirectPlaylists={this.redirectPlaylists}
+              redirectToSignUp={this.redirectToSignUp}
+             />}
+            />
+            <Route
+              path="/spotify"
+              exact
+              render={(routerProps) => <Spotify {...routerProps} />}
+            />
+            <PrivateRoute
+              path="/playlist"
+              exact
+              token={user && user.token}
+              render={(routerProps) => <Playlist {...routerProps} />}
+              user={this.state.user}
             />
             <Route
               path="/login"

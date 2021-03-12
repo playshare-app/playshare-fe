@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 10px;
+  margin: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-primary {
+  background-color: transparent;
+  color: white;
+  padding: 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 20px;
+  font-size: 16px;
+  width: 100px;
+  text-align: center;
+  border: 2px white solid;
+  outline: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary:hover {
+  cursor: pointer;
+  color: #f222ff;
+  border: 2px #f222ff solid;
+  box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
 }
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  padding: 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 20px;
+  font-size: 12px;
+  width: auto;
+  text-align: center;
+  border: 2px white solid;
+  margin: 10px;
+  outline: none;
+}
+
+.btn-secondary:hover {
+  cursor: pointer;
+  color: #f222ff;
+  border: 2px #f222ff solid;
+  box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px;
+}
+
+.btn-secondary:outline{
+  display:none;
+}
+
+.playlists {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  
+}
+
+.public {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  
+}
+
+.public-playlists {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+.playlist-item {
+  padding: 10px;
+  margin: 30px;
+  color: rgba(140,30,255);
+  background: rgba(0,0,0);
+  
+  box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
+ 
+}
+
+.public-playlist-item {
+  padding: 20px;
+  margin: 50px;
+  color: rgba(140,30,255);
+  background: black;
+  
+  box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
+}
+
+.shared-playlist-item {
+  padding: 10px;
+  margin: 30px;
+  color: rgba(255,41,117, 0.2);
+  background: black;
+  
+  box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
+}
+
+.playlist-name {
+  margin: 20px;
+  font-size: 24px;
+  color: white;
+  
+}
+
+.owner-name {
+  margin: 20px;
+  font-size: 12px;
+  color: rgba(140,30,255);
+}
+
+form {
+  color: purple;
+  box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
+}
+
+
+
+
+
