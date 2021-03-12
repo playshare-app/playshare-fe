@@ -101,7 +101,7 @@ export default class Profile extends Component {
 
                         <p>{
                         this.isAlreadyShared(songList) 
-                            ? '🎸' 
+                            ? '🎸 Already Shared 🎸 ' 
                             : <button className= "btn-secondary" onClick={() => this.handleSubmit(songList)}><img src="https://fontmeme.com/permalink/210311/59137af53d9aa87d6ca48a739f509f63.png" alt="mexcellent-font" border="0"/></button>
                         }</p>
               </div>
