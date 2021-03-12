@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-// import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,6 +13,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import MenuIcon from '@material-ui/icons/Menu';
 import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 
 
@@ -52,7 +52,6 @@ export function TemporaryDrawer( props ) {
 
     setState({ ...state, [anchor]: open });
   };
-  // {['Home', 'My Profile', 'Playlists', 'Logout']
   const list = (anchor) => (
     <div
       className={clsx(classes.list)}
@@ -78,6 +77,10 @@ export function TemporaryDrawer( props ) {
           utility: props['redirectToSignUp']
         },
         {
+          name: 'About Us',
+          utility: props['redirectToAboutUs']
+        },
+        {
           name: 'Logout',
           utility: props['handleLogout']
         },
@@ -94,6 +97,8 @@ export function TemporaryDrawer( props ) {
                   return <QueueMusicIcon style={{color: 'rgba(255,41,117)'}}  />
               } else if ( index === 3 ) {
                   return <PostAddIcon style={{ color: 'rgba(255,144,31)'}}  />
+              } else if ( index === 4 ) {
+                  return <InfoIcon style={{ color: 'rgba(242,12,155)'}}  />
               } else { 
                  return <ExitToAppIcon style={{color: 'rgba(255,211,25)'}} />
 

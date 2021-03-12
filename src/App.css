@@ -1,3 +1,17 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm251-aum-01_1_2.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=a6cc66028f73bea111103608c255e031');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -70,7 +84,9 @@
   padding: 10px;
   margin: 10px;
   
+  
 }
+
 
 .public {
   display:flex;
@@ -81,6 +97,7 @@
   text-align: center;
   padding: 20px;
   margin: 20px;
+  
   
 }
 
@@ -93,6 +110,7 @@
   text-align: center;
   padding: 20px;
   margin: 20px;
+  
 }
 
 .playlist-item {
@@ -102,7 +120,16 @@
   background: rgba(0,0,0);
   
   box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
+  
  
+}
+
+.playlist-item:hover {
+  
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
 }
 
 .public-playlist-item {
@@ -114,6 +141,14 @@
   box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
 }
 
+.public-playlist-item:hover {
+  
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+}
+
 .shared-playlist-item {
   padding: 10px;
   margin: 30px;
@@ -121,6 +156,14 @@
   background: black;
   
   box-shadow: rgba(140,30,255, 0.4) -5px 5px, rgba(242,34,255, 0.3) -10px 10px, rgba(255,41,117, 0.2) -15px 15px, rgba(255,144,31, 0.1) -20px 20px, rgba(255,211,25, 0.05) -25px 25px;
+}
+
+.shared-playlist-item:hover {
+  
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
 }
 
 .playlist-name {
