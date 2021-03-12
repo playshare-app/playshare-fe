@@ -61,7 +61,7 @@ export default class Playlist extends Component {
     return (
       <div>
       <div className="title">
-        <img src="https://fontmeme.com/permalink/210312/52ac5c4192db7523d472da8e6b5dfb18.png" alt="mexcellent-font" border="0"/>
+        <img src="https://fontmeme.com/permalink/210312/6847b66bfa54400b4f3bf65788732566.png" alt="mexcellent-font" border="0"/>
        </div>
       <div className="public-playlists">
         {this.state.publicPlaylist.map((songList) => (

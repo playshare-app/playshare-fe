@@ -26,6 +26,7 @@ function HomeSection() {
           Connecting developers, one playlist at a time.
         </HomeP>
         <Link to="/login" className="btn-primary"><img src="https://fontmeme.com/permalink/210311/fcb96cf24f54b8053fd629ac163dbc1a.png" alt="mexcellent-font" border="0"/></Link>
+        <Link to="/signup">Don't have an account? Sign Up Here!</Link>
       </HomeContent>
     </HomeContainer>
   );
