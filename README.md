@@ -2,7 +2,7 @@
 
 #### Created By: Claudia Mazariegos, Cierra McDonald, Zina Mohamed, Katilyn Wiggins
 
-# a silent disco for developers... 
+## a silent disco for developers... 
 
 Algorhythm is a silent disco for developers. It is a web application designed to bring developers together through a shared love of music. This social application enables anyone with a spotify account to share their favorite playlists globally. 
 
@@ -11,35 +11,35 @@ Algorhythm has the ability to generate comradierie within a single office workpl
 
 
 
-## Libraries, Frameworks, Packages Utilized: 
-#Frontend 
+### Libraries, Frameworks, Packages Utilized: 
+Frontend:
 - React
 - JSON
 - Heroku
 - Material UI
 
-#Backend
+Backend:
 - PostgreSQL
 - NodeJS
 
  
-# Instructions: 
+### Instructions: 
 Simply sign up on the app and try adding one of your personal playlists! Playlist must be set as public to share. 
 
-# Download and Install: 
+### Download and Install: 
 
 git clone https:github.com/playshare/playshare-fe
 cd playshare-fe
 react-router-dom, superagent, styled-components 
 
-# Development
+### Development
 [Miro Board](https://miro.com/app/board/o9J_lQhM7Wo=/)
 
 
-# Questions or concerns?
+### Questions or concerns?
 [Algorhythm Support](katilynswiggins@gmail.com)
 
-# License 
+#### License 
 This software operates under the [Spotify](https://developer.spotify.com/terms/) license
 
-# Version 1.0.0 
+##### Version 1.0.0 
