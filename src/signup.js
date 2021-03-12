@@ -78,11 +78,13 @@ export function Signup (props) {
         className={classes.child}
         id="standard-basic"
         label="Email"
+        type="email"
         onChange={handleEmailChange}
       />
       <TextField
         id="standard-basic"
         label="Password"
+        type="password"
         onChange={handlePasswordChange}
       />
 

@@ -72,7 +72,7 @@ const About = () => {
           Software developer, lover of all things sci-fi, somewhere eating mochi. 
           </AboutP>
           <SpotifyPlayer
-              uri='spotify:playlist:37i9dQZF1DWYs2pvwxWA7l'
+              uri='spotify:playlist:2Mq3wk563SWgYwA7sIoQAA'
               size={size}
               view={view}
               theme={theme}
