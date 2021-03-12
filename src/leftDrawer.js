@@ -117,7 +117,7 @@ export function TemporaryDrawer( props ) {
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Tooltip title="Menu">
-           <Button onClick={toggleDrawer(anchor, true)} style={{color: 'rgba(140,30,255)'}}><MenuIcon/></Button>
+           <Button onClick={toggleDrawer(anchor, true)} style={{color: 'white'}}><MenuIcon/></Button>
           </Tooltip>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
