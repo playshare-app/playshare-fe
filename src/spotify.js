@@ -5,7 +5,7 @@ import {
 } from './local-storage-utils.js';
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 const clientId = '39c212be9cbf4cffae633afcac06a90f';
-const redirectUri = 'http://localhost:3001/spotify';
+const redirectUri = 'https://algo-rhythm.netlify.app/spotify';
 const scopes = ['playlist-read-private', 'playlist-read-collaborative'];
 
 export default class Spotify extends Component {
