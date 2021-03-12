@@ -1,11 +1,11 @@
 import request from 'superagent';
 
 
-// const URL = 'http://localhost:3000';
-const URL = 'https://serene-thicket-62850.herokuapp.com'
+const URL = 'http://localhost:3000';
+// const URL = 'https://serene-thicket-62850.herokuapp.com'
 
 
-export async function signUpUser(email, password) {
+export async function signUpUser (email, password) {
   const response = await request.post(`${URL}/auth/signup`).send({
     email: email,
     password: password
@@ -13,7 +13,7 @@ export async function signUpUser(email, password) {
   return response.body;
 }
 
-export async function logInUser(email, password) {
+export async function logInUser (email, password) {
   const response = await request.post(`${URL}/auth/signin`).send({
     email: email,
     password: password
@@ -21,7 +21,7 @@ export async function logInUser(email, password) {
   return response.body;
 }
 
-export async function getPlaylists(token) {
+export async function getPlaylists (token) {
   const response = await request
     // .get(`${URL}/playlist`)
     // .set('Authorization', 'Bearer ' + token);
@@ -32,7 +32,7 @@ export async function getPlaylists(token) {
   return response.body;
 }
 
-export async function addPublicPlaylist(playlist, token) {
+export async function addPublicPlaylist (playlist, token) {
   const response = await request
     .post(`${URL}/api/playshare`)
     .set('Authorization', token)
@@ -41,42 +41,42 @@ export async function addPublicPlaylist(playlist, token) {
   return response.body;
 }
 //DELETE
-export async function deletePublicPlaylist(id, token) {
+export async function deletePublicPlaylist (id, token) {
   const response = await request
     .delete(`${URL}/api/myplaylists/${id}`)
     .set('Authorization', token)
-    // .send(playlist);
+  // .send(playlist);
 
   return response.body;
 }
 
-export async function getPublicPlaylists() {
+export async function getPublicPlaylists () {
   const response = await request.get(`${URL}/playshare`);
   // .set('Authorization', token);
 
   return response.body;
 }
 
-export async function getPublicPlaylistPersonal(token) {
+export async function getPublicPlaylistPersonal (token) {
   const response = await request
-  .get(`${URL}/api/myplaylists`)
-  .set('Authorization', token)
+    .get(`${URL}/api/myplaylists`)
+    .set('Authorization', token)
 
   return response.body;
 }
 
 //COMMENTS ONLY ===========
 
-export async function postComment(comment_test, user_email, playlistid) {
+export async function postComment (comment_test, user_email, playlistid) {
   const response = await request
-  .post(`${URL}/comments`)
-  .send({comment_test, user_email, playlistid});
+    .post(`${URL}/comments`)
+    .send({comment_test, user_email, playlistid});
   //.set('Authorization', token)
 
   return response.body;
 }
 
-export async function getPublicComments() {
+export async function getPublicComments () {
   const response = await request.get(`${URL}/comments`);
   // .set('Authorization', token);
 
