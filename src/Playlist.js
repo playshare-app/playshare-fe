@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import SpotifyPlayer from 'react-spotify-player';
 
@@ -25,7 +26,7 @@ export default class Playlist extends Component {
     this.publicCommentsFetch();
   };
 
-  //COMMENTS =====
+  
   publicCommentsFetch = async () => {
     const comments = await getPublicComments(this.state.user.token);
     console.log(comments, 'PUBLICCCC COMMENTS ARRAY')
@@ -34,7 +35,7 @@ export default class Playlist extends Component {
     this.setState({comments});
   };
 
-  //comment_test, user_email, playlistid
+  
   handleSubmit = async e => {
     e.preventDefault();
 
@@ -55,8 +56,8 @@ export default class Playlist extends Component {
       width: 'small',
       height: 200
     };
-    const view = 'list'; // or 'coverart'
-    const theme = 'black'; // or 'white'
+    const view = 'list'; 
+    const theme = 'black'; 
     return (
       <div className="public-playlists">
         {this.state.publicPlaylist.map((songList) => (
@@ -70,30 +71,10 @@ export default class Playlist extends Component {
               theme={theme}
             />
           </div>
-        ))}
-        {/* <input> </input> */}
-        {/* .filter for comments that match the playlist ID
-          chain together filters and maps 
-    //filter  */}
 
-        <div style={{color: 'white'}}>COMMENTS:</div>
-        {this.state.comments.map(booger =>
-          <p
-            key={`${booger.comment_test}-${booger.id}`}
-            onClick={() => this.handleSubmit(booger.id)} style={{color: 'white'}}>
-            {booger.comment_test}
-          </p>
-        )}
+        ))}   
 
-        {/* <div>COMMENTS</div>
-            {this.state.comments.map((booger) => (
-              <div key={booger.playlistid}>
-                <div style={{color: 'white'}}>{booger.comment_test}</div>
-                <button onClick={() => this.handleSubmit(booger)}>
-                  submit comment
-                </button>
-              </div>
-            ))}  */}
+        
       </div>
     );
   }

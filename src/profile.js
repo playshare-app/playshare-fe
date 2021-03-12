@@ -12,9 +12,9 @@ export default class Profile extends Component {
   state = {
     token: getSpotifyTokenFromLocalStorage(),
     user: getUserFromLocalStorage(),
-    playlist: [], //SPOTIFY ARRAY - fetchSpotifyPlaylist
-    publicPlaylist: [], //PUBLIC ARRAY - publicPlaylistFetch
-    personalPublic: [], //PERSONAL PUBLIC ARRAY - 
+    playlist: [], 
+    publicPlaylist: [], 
+    personalPublic: [], 
   };
 
   fetchSpotifyPlaylist = async () => {
@@ -81,8 +81,8 @@ export default class Profile extends Component {
       width: 'small',
       height: 200
     };
-    const view = 'list'; // or 'coverart'
-    const theme = 'black'; // or 'white'
+    const view = 'list'; 
+    const theme = 'black'; 
 
     return (
       <div className="App">

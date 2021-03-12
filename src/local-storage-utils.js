@@ -1,7 +1,7 @@
 export const USER = 'USER';
 export const TOKEN = 'token';
 
-// this function will give us a user object
+
 export function getUserFromLocalStorage() {
   let user = localStorage.getItem(USER);
 

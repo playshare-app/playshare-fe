@@ -5,6 +5,7 @@ import { Login } from './login.js';
 import { Signup } from './signup.js';
 import Profile from './profile.js';
 import Playlist from './Playlist.js';
+import About from './AboutUs.js';
 import Spotify from './spotify.js';
 // import Plants from './Search/plants.js';
 // import Favorites from './Favorites/favoriteList.js';
@@ -54,6 +55,10 @@ export default class App extends React.Component {
     window.location.replace('/signup')
   }
 
+  redirectToAboutUs = () => { 
+    window.location.replace('/about')
+  }
+
   render() {
     const { user } = this.state;
     return (
@@ -65,6 +70,7 @@ export default class App extends React.Component {
            redirectMyProfile={this.redirectMyProfile}
            redirectPlaylists={this.redirectPlaylists}
            redirectToSignUp={this.redirectToSignUp}
+           redirectToAboutUs={this.redirectToAboutUs}
          />
           <Switch>
             <PrivateRoute
@@ -75,7 +81,8 @@ export default class App extends React.Component {
               handleLogout={this.handleLogout}
               redirectHome={this.redirectHome}
               redirectMyProfile={this.redirectMyProfile}
-              redirectPlaylists={this.redirectPlaylists} />}
+              redirectPlaylists={this.redirectPlaylists}
+              redirectToAboutUs={this.redirectToAboutUs} />}
             />
              <Route
               path="/"
@@ -91,6 +98,7 @@ export default class App extends React.Component {
               redirectMyProfile={this.redirectMyProfile}
               redirectPlaylists={this.redirectPlaylists}
               redirectToSignUp={this.redirectToSignUp}
+              redirectToAboutUs={this.redirectToAboutUs}
              />}
             />
             <Route
@@ -120,6 +128,16 @@ export default class App extends React.Component {
               exact
               render={(routerProps) => (
                 <Signup
+                  handleUserChange={this.handleUserChange}
+                  {...routerProps}
+                />
+              )}
+            />
+            <Route
+              path="/about"
+              exact
+              render={(routerProps) => (
+                <About
                   handleUserChange={this.handleUserChange}
                   {...routerProps}
                 />
