@@ -87,6 +87,9 @@ export default class Profile extends Component {
     return (
       <div className="App">
         <header className="wrapper">
+          <div className="title">
+            <img src="https://fontmeme.com/permalink/210312/360b60a659383c9af8f4b5295e92415c.png" alt="mexcellent-font" border="0"/>
+            </div>
           <div className = "playlists">
           {this.state.token &&
             this.state.playlist.map((songList) => (
@@ -101,7 +104,7 @@ export default class Profile extends Component {
 
                         <p>{
                         this.isAlreadyShared(songList) 
-                            ? '🎸 Already Shared 🎸 ' 
+                            ? '🎸  Already Shared  🎸 ' 
                             : <button className= "btn-secondary" onClick={() => this.handleSubmit(songList)}><img src="https://fontmeme.com/permalink/210311/59137af53d9aa87d6ca48a739f509f63.png" alt="mexcellent-font" border="0"/></button>
                         }</p>
               </div>

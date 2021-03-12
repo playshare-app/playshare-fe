@@ -71,7 +71,7 @@ export function Login (props) {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <h2>LogIn</h2>
+      <h2>Login</h2>
       {error && (
         <h5 style={{color: 'red'}}>Uh oh, {error}, please try again!</h5>
       )}
