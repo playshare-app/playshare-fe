@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import hash from './hash.js';
 import {
   getSpotifyTokenFromLocalStorage,
-  putSpotifyTokenInLocalStorage
 } from './local-storage-utils.js';
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
 const clientId = '39c212be9cbf4cffae633afcac06a90f';
@@ -14,7 +13,7 @@ export default class Spotify extends Component {
     token: ''
   };
 
-  componentWillMount() {
+  componentWillMount () {
     let _token = hash.access_token;
     if (_token) {
       localStorage.setItem('token', _token);
@@ -24,30 +23,30 @@ export default class Spotify extends Component {
     }
   }
 
-  isTokenInLocalStorage() {
+  isTokenInLocalStorage () {
     const tokenFound = getSpotifyTokenFromLocalStorage();
     if (tokenFound) {
       return Boolean(tokenFound);
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <p>
           {this.isTokenInLocalStorage() ? (
             window.location.replace('/profile')
           ) : (
-            <a
-              className="btn btn--loginApp-link"
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                '%20'
-              )}&response_type=token&show_dialog=true`}
-            >
-              {' '}
+              <a
+                className="btn btn--loginApp-link"
+                href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                  '%20'
+                )}&response_type=token&show_dialog=true`}
+              >
+                {' '}
               Login to Spotify
-            </a>
-          )}
+              </a>
+            )}
         </p>
       </div>
     );
