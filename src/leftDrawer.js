@@ -17,6 +17,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 
 
+const LEFT = 'left';
 
 const useStyles = makeStyles({
   list: {
@@ -38,6 +39,7 @@ export function TemporaryDrawer( props ) {
   console.log(props);
   const classes = useStyles();
   
+  // hooks! nice work!
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -45,13 +47,53 @@ export function TemporaryDrawer( props ) {
     right: false,
   });
 
+  // nice work figuring out the keydown event!
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
+    // nice work figuring out that you need to spread state here
     setState({ ...state, [anchor]: open });
   };
+
+  // might want to even move this into a separate file and import it in for readability
+  const items = [{
+    name: 'Home',
+    utility: props['redirectHome']
+  },
+  {
+    name: 'My Profile',
+    utility: props['redirectMyProfile']
+  },
+  {
+    name: 'Playlists',
+    utility: props['redirectPlaylists']
+  },
+  {
+    name: 'Sign Up',
+    utility: props['redirectToSignUp']
+  },
+  {
+    name: 'About Us',
+    utility: props['redirectToAboutUs']
+  },
+  {
+    name: 'Log Out',
+    utility: props['handleLogout']
+  },
+  ];
+
+  // this should do the trick
+  const iconArray = [
+    <HomeIcon style={{color: 'rgba(140,30,255)'}} />,
+    <PersonIcon style={{color: 'rgba(242,34,255)'}}  />,
+    <QueueMusicIcon style={{color: 'rgba(255,41,117)'}}  />,
+    <PostAddIcon style={{ color: 'rgba(255,144,31)'}}  />,
+    <InfoIcon style={{ color: 'rgba(242,12,155)'}}  />,
+    <ExitToAppIcon style={{color: 'rgba(255,211,25)'}} />
+  ]
+
   const list = (anchor) => (
     <div
       className={clsx(classes.list)}
@@ -60,52 +102,12 @@ export function TemporaryDrawer( props ) {
       onKeyDown={toggleDrawer(anchor, false)}
     >,
       <List>
-        {[{
-          name: 'Home',
-          utility: props['redirectHome']
-        },
-        {
-          name: 'My Profile',
-          utility: props['redirectMyProfile']
-        },
-        {
-          name: 'Playlists',
-          utility: props['redirectPlaylists']
-        },
-        {
-          name: 'Sign Up',
-          utility: props['redirectToSignUp']
-        },
-        {
-          name: 'About Us',
-          utility: props['redirectToAboutUs']
-        },
-        {
-          name: 'Log Out',
-          utility: props['handleLogout']
-        },
-        ].map((text, index) => (
-          // console.log(text),
-          <ListItem onClick={text.utility} button key={text.name} style={{marginTop: '25px'}}>
+        {items.map(({ utility, name }, index) => (
+          <ListItem onClick={utility} button key={name} style={{marginTop: '25px'}}>
             <ListItemIcon>
-            {(() => { 
-                if (index === 0 ) { 
-                  return <HomeIcon style={{color: 'rgba(140,30,255)'}} />
-              } else if ( index === 1) { 
-                  return <PersonIcon style={{color: 'rgba(242,34,255)'}}  />
-              } else if (index === 2) { 
-                  return <QueueMusicIcon style={{color: 'rgba(255,41,117)'}}  />
-              } else if ( index === 3 ) {
-                  return <PostAddIcon style={{ color: 'rgba(255,144,31)'}}  />
-              } else if ( index === 4 ) {
-                  return <InfoIcon style={{ color: 'rgba(242,12,155)'}}  />
-              } else { 
-                 return <ExitToAppIcon style={{color: 'rgba(255,211,25)'}} />
-
-            }}) ()}
-            
+              {iconArray[index]}
             </ListItemIcon>
-            <ListItemText primary={text.name} />
+            <ListItemText primary={name} />
           </ListItem>
         ))}
       </List>
@@ -113,17 +115,17 @@ export function TemporaryDrawer( props ) {
   );
 
   return (
+    
     <div>
-      {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
+      {/* seems like you don't need the map, since it's an array of one */}
+        <React.Fragment key={LEFT}>
           <Tooltip title="Menu">
-           <Button onClick={toggleDrawer(anchor, true)} style={{color: 'white'}}><MenuIcon/></Button>
+           <Button onClick={toggleDrawer(LEFT, true)} style={{color: 'white'}}><MenuIcon/></Button>
           </Tooltip>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            {list(anchor)}
+          <Drawer anchor={LEFT} open={state[LEFT]} onClose={toggleDrawer(LEFT, false)}>
+            {list(LEFT)}
           </Drawer>
         </React.Fragment>
-      ))}
     </div>
   );
 }

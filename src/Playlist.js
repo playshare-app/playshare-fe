@@ -51,6 +51,7 @@ export default class Playlist extends Component {
     this.setState({comment_test: '', user_email: '', playlistid: '', })
   };
 
+  // amazing how little code it took to get this off the ground! that's the sign of great work!
   render () {
     const size = {
       width: 'small',

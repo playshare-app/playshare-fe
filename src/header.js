@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TemporaryDrawer } from './leftDrawer.js'
 
-export default class header extends Component {
+// seems like you could have added a div to your Drawer component instead of having this Header passthrough component
+export default class Header extends Component {
   render() {
     
     return (
