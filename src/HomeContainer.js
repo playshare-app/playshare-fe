@@ -11,6 +11,7 @@ import {
   HomeP,
 } from './HomeElements';
 
+// nice work figuring out functional components!
 function HomeSection() {
   
 

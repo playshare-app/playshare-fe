@@ -6,6 +6,7 @@ import {
 
 } from './local-storage-utils.js';
 export const authEndpoint = 'https://accounts.spotify.com/authorize';
+// i wonder if this should be in an environment vairable. Are there risks in exposing this publicly?
 const clientId = '39c212be9cbf4cffae633afcac06a90f';
 const redirectUri = 'https://algo-rhythm.netlify.app/spotify/';
 const scopes = ['playlist-read-private', 'playlist-read-collaborative'];
@@ -41,6 +42,7 @@ export default class Spotify extends Component {
           ) : (
               <a
                 className="btn btn--loginApp-link"
+                // soooo coool
                 href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
                   '%20'
                 )}&response_type=token&show_dialog=true`}

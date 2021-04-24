@@ -1,3 +1,4 @@
+// this should probably have some more comments explaining what's going on. Seems tough to maintain this
 const hash = window.location.hash
   .substring(1)
   .split('&')

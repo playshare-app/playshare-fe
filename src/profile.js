@@ -29,6 +29,7 @@ export default class Profile extends Component {
       token: getSpotifyTokenFromLocalStorage()
     });
     
+    // great organization of fetches
     this.fetchSpotifyPlaylist();
     this.personalPlaylistFetch();
     this.publicPlaylistFetch();
@@ -124,6 +125,7 @@ export default class Profile extends Component {
                   theme={theme}
                 /> 
                 <div className="button-wrapper">
+                  {/* nice work passing the param through an anonymous onClick function */}
                   <button className="btn-secondary" onClick={() => this.handleDelete(songList.id)}>
                       <img src="https://fontmeme.com/permalink/210311/c284f126afe899f80c59bcb7f8e1193f.png" alt="mexcellent-font" border="0"/>
                   </button>

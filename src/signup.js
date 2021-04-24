@@ -59,6 +59,7 @@ export function Signup (props) {
 
       props.handleUserChange(user);
       window.location.replace(
+        // seems like since you use this in login and signup you might want it to live in a third place as a makeSprotifyUrl function
         `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
           '%20'
         )}&response_type=token&show_dialog=true`

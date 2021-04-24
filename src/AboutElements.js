@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// STYLED COMPONENTS! so cool, nice work figuring this out
 export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;

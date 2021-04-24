@@ -39,6 +39,8 @@ export default class App extends React.Component {
     window.location.replace('/login');
   };
 
+   // seems like these redirects could have been defined in the components instead of being passed down, since there's no dependence on parent state in these functions
+
   redirectHome = () => { 
     window.location.replace('/')
   }
@@ -93,6 +95,7 @@ export default class App extends React.Component {
               path="/left"
               exact
               render={(routerProps) => <TemporaryDrawer {...routerProps}
+              // seems like these redirects could have been defined in the components instead of being passed down, since there's no dependence on parent state in these functions
               handleLogout={this.handleLogout}
               redirectHome={this.redirectHome}
               redirectMyProfile={this.redirectMyProfile}
